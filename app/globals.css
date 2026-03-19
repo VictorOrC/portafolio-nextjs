@@ -128,6 +128,11 @@ ul {
   max-width: 62ch;
 }
 
+.hero-intro h1 {
+  max-width: 13ch;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+}
+
 .hero-rail {
   display: grid;
   gap: 1rem;
@@ -163,7 +168,7 @@ ul {
 
 .identity-card h2 {
   font-family: var(--font-display), serif;
-  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
   line-height: 1;
 }
 
@@ -226,17 +231,17 @@ h3 {
 }
 
 h1 {
-  max-width: 11ch;
+  max-width: 9ch;
   margin-top: 0.8rem;
-  font-size: clamp(3.4rem, 7.8vw, 6.9rem);
+  font-size: clamp(2rem, 3.8vw, 3.4rem);
 }
 
 h2 {
-  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
 }
 
 h3 {
-  font-size: 2rem;
+  font-size: 1.35rem;
 }
 
 .lead {
@@ -378,6 +383,113 @@ h3 {
 .section-heading h2 {
   margin-top: 0.7rem;
   max-width: 13ch;
+}
+
+.project-heading h2 {
+  max-width: 18ch;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+}
+
+.contact-banner h2,
+.panel-head h2,
+.case-panel h2,
+.archive-body h2 {
+  max-width: 18ch;
+}
+
+.contact-column,
+.contact-copy,
+.contact-direct,
+.contact-form-shell {
+  min-width: 0;
+}
+
+.contact-column {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.contact-copy {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+
+.contact-direct,
+.contact-form-shell {
+  align-content: start;
+}
+
+.contact-direct strong {
+  font-size: 1.15rem;
+  line-height: 1.4;
+}
+
+.contact-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.contact-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.contact-field span {
+  color: var(--ink-faint);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  background: rgba(252, 247, 240, 0.95);
+  color: var(--ink);
+  font: inherit;
+  padding: 0.9rem 1rem;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.contact-field textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: var(--copper);
+  box-shadow: 0 0 0 3px rgba(165, 83, 49, 0.12);
+}
+
+.contact-form-actions {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.form-note {
+  color: var(--ink-faint);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.project-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  gap: 1rem;
+  align-items: end;
 }
 
 .project-grid {
@@ -539,6 +651,32 @@ h3 {
   gap: 0.8rem;
 }
 
+.mini-points,
+.case-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.mini-points li,
+.case-list li {
+  position: relative;
+  padding-left: 1rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+
+.mini-points li::before,
+.case-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.7rem;
+  left: 0;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: var(--copper);
+}
+
 .archive-actions {
   display: flex;
   justify-content: flex-end;
@@ -548,6 +686,10 @@ h3 {
 
 .detail-layout {
   grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.75fr);
+}
+
+.detail-layout-bottom {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .case-panel {
@@ -562,6 +704,25 @@ h3 {
 
 .detail-list dd {
   text-transform: capitalize;
+}
+
+.resource-panel {
+  background: linear-gradient(135deg, rgba(255, 250, 244, 0.96), rgba(230, 220, 206, 0.9));
+}
+
+.resource-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.resource-note {
+  display: inline-flex;
+  align-items: center;
+  border: 1px dashed var(--rule-strong);
+  border-radius: 999px;
+  padding: 0.78rem 1rem;
+  color: var(--ink-faint);
 }
 
 .projects-header,
@@ -597,10 +758,10 @@ h3 {
 
 .contact-banner {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.9fr);
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 1.05fr);
   gap: 1.25rem;
   padding: 1.5rem;
-  align-items: end;
+  align-items: start;
   background: linear-gradient(135deg, rgba(255, 250, 244, 0.96), rgba(230, 220, 206, 0.9));
 }
 
@@ -611,11 +772,17 @@ h3 {
   .projects-hero,
   .detail-hero,
   .detail-layout,
+  .detail-layout-bottom,
+  .project-heading,
   .project-grid {
     grid-template-columns: 1fr;
   }
 
   .archive-entry {
+    grid-template-columns: 1fr;
+  }
+
+  .field-grid {
     grid-template-columns: 1fr;
   }
 
@@ -675,6 +842,11 @@ h3 {
 
   .top-nav {
     padding-top: 0;
+  }
+
+  .hero-intro h1 {
+    max-width: 11ch;
+    font-size: clamp(1.85rem, 7.2vw, 2.7rem);
   }
 
   .actions {

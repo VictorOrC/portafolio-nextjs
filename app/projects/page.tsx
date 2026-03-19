@@ -50,6 +50,7 @@ export default function ProjectsPage() {
               <div className="project-topline">
                 <div className="project-meta">
                   <span>{project.status}</span>
+                  <span>{project.role}</span>
                   <span>{project.stack.length} tecnologias</span>
                 </div>
               </div>
@@ -59,6 +60,11 @@ export default function ProjectsPage() {
 
             <div className="archive-notes">
               <p className="project-description">{project.description}</p>
+              <ul className="mini-points" aria-label={`Logros clave de ${project.title}`}>
+                {project.achievements.slice(0, 2).map((achievement) => (
+                  <li key={achievement}>{achievement}</li>
+                ))}
+              </ul>
               <ul className="tag-list compact">
                 {project.stack.map((item) => (
                   <li key={item}>{item}</li>

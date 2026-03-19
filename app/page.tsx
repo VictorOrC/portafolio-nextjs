@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ContactForm } from "@/components/contact-form";
 import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 
@@ -145,17 +146,33 @@ export default function Home() {
       </section>
 
       <section className="contact-banner card">
-        <div>
-          <p className="eyebrow">Siguiente paso</p>
-          <h2>Si buscas a alguien que construya interfaces utiles y bien pensadas, conversemos.</h2>
+        <div className="contact-column">
+          <div className="contact-copy">
+            <p className="eyebrow">Siguiente paso</p>
+            <h2>Si buscas a alguien que construya interfaces utiles y bien pensadas, conversemos.</h2>
+            <p className="panel-copy">
+              Puedes escribirme directo o dejar un mensaje corto para abrir el correo con contexto listo.
+            </p>
+          </div>
+
+          <div className="contact-direct rail-card">
+            <span className="panel-label">Contacto directo</span>
+            <strong>{profile.contact.email}</strong>
+            <p>{profile.contact.phone}</p>
+            <div className="contact-actions">
+              <a className="button button-primary" href={`mailto:${profile.contact.email}`}>
+                Contactar por correo
+              </a>
+              <a className="button button-secondary" href={profile.contact.linkedin} target="_blank" rel="noreferrer">
+                Ver LinkedIn
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="contact-actions">
-          <a className="button button-primary" href={`mailto:${profile.contact.email}`}>
-            Contactar por correo
-          </a>
-          <a className="button button-secondary" href={profile.contact.linkedin} target="_blank" rel="noreferrer">
-            Ver LinkedIn
-          </a>
+
+        <div className="contact-form-shell rail-card">
+          <span className="panel-label">Formulario corto</span>
+          <ContactForm email={profile.contact.email} />
         </div>
       </section>
     </main>
