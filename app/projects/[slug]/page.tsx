@@ -39,24 +39,65 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <main className="projects-shell">
-      <article className="project-detail card">
-        <Link className="back-link" href="/projects">
-          Volver a proyectos
-        </Link>
-        <div className="detail-meta">
-          <span>{project.year}</span>
-          <span>{project.status}</span>
+    <main className="projects-shell dossier-shell">
+      <header className="projects-masthead">
+        <div>
+          <p className="eyebrow">Ficha de proyecto</p>
+          <strong className="masthead-mark">EXP-{project.year.slice(-2)} / Detail</strong>
         </div>
-        <h1>{project.title}</h1>
-        <p className="detail-copy">{project.summary}</p>
-        <p className="detail-copy">{project.description}</p>
-        <ul className="tag-list">
-          {project.stack.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-      </article>
+        <Link className="back-link compact-back" href="/projects">
+          Volver al archivo
+        </Link>
+      </header>
+
+      <section className="detail-hero card">
+        <article className="detail-main">
+          <div className="detail-meta">
+            <span>{project.year}</span>
+            <span>{project.status}</span>
+            <span>{project.stack.length} tecnologias</span>
+          </div>
+          <h1>{project.title}</h1>
+          <p className="detail-copy">{project.summary}</p>
+          <ul className="tag-list">
+            {project.stack.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </article>
+
+        <aside className="detail-side rail-card">
+          <span className="panel-label">Lectura rapida</span>
+          <strong>Implementacion documentada</strong>
+          <p>Este caso resume el problema abordado, la estructura tecnica aplicada y la base dejada para crecer.</p>
+        </aside>
+      </section>
+
+      <section className="detail-layout">
+        <article className="project-detail card case-panel">
+          <p className="eyebrow">Resumen tecnico</p>
+          <h2>Decision y ejecucion</h2>
+          <p className="detail-copy">{project.description}</p>
+        </article>
+
+        <aside className="card case-panel case-sidebar">
+          <p className="eyebrow">Registro de ficha</p>
+          <dl className="identity-list detail-list">
+            <div>
+              <dt>Codigo</dt>
+              <dd>EXP-{project.year.slice(-2)}</dd>
+            </div>
+            <div>
+              <dt>Estado</dt>
+              <dd>{project.status}</dd>
+            </div>
+            <div>
+              <dt>Enfoque</dt>
+              <dd>{project.stack[0]}</dd>
+            </div>
+          </dl>
+        </aside>
+      </section>
     </main>
   );
 }

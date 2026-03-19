@@ -445,6 +445,125 @@ h3 {
   padding: 2rem 0 4rem;
 }
 
+.dossier-shell {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.projects-masthead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.compact-back {
+  margin-bottom: 0;
+  padding-top: 0.4rem;
+}
+
+.projects-hero,
+.detail-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.8fr);
+  gap: 1rem;
+  padding: 1.2rem;
+}
+
+.projects-hero-main,
+.detail-main {
+  display: grid;
+  gap: 1rem;
+  padding: 1.15rem;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 251, 246, 0.95), rgba(238, 226, 210, 0.85));
+  border: 1px solid rgba(78, 56, 38, 0.12);
+}
+
+.projects-hero-rail {
+  display: grid;
+  gap: 1rem;
+}
+
+.archive-card strong,
+.detail-side strong {
+  font-size: 1.3rem;
+}
+
+.muted-archive {
+  background: rgba(232, 221, 207, 0.72);
+}
+
+.archive-list,
+.detail-layout {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.archive-entry {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr) minmax(0, 0.9fr) 150px;
+  gap: 1rem;
+  align-items: start;
+  padding: 1.35rem;
+  background: linear-gradient(180deg, rgba(255, 250, 244, 0.88), rgba(239, 229, 214, 0.84));
+}
+
+.archive-code {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+}
+
+.archive-year {
+  color: var(--ink);
+  font-family: var(--font-display), serif;
+  font-size: 2.4rem;
+  line-height: 0.95;
+}
+
+.archive-body,
+.archive-notes,
+.archive-actions,
+.case-panel {
+  min-width: 0;
+}
+
+.archive-body {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.archive-notes {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.archive-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding-top: 0.2rem;
+}
+
+.detail-layout {
+  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.75fr);
+}
+
+.case-panel {
+  display: grid;
+  gap: 0.9rem;
+  padding: 1.4rem;
+}
+
+.case-sidebar {
+  align-content: start;
+}
+
+.detail-list dd {
+  text-transform: capitalize;
+}
+
 .projects-header,
 .project-detail {
   margin-bottom: 1.5rem;
@@ -489,8 +608,19 @@ h3 {
   .hero-dossier,
   .inspection-grid,
   .contact-banner,
+  .projects-hero,
+  .detail-hero,
+  .detail-layout,
   .project-grid {
     grid-template-columns: 1fr;
+  }
+
+  .archive-entry {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-actions {
+    justify-content: flex-start;
   }
 
   h1 {
@@ -506,6 +636,7 @@ h3 {
   }
 
   .masthead,
+  .projects-masthead,
   .top-nav,
   .fact-strip,
   .panel-head,
@@ -515,6 +646,7 @@ h3 {
   }
 
   .masthead,
+  .projects-masthead,
   .panel-head,
   .project-topline,
   .contact-banner {
@@ -524,9 +656,15 @@ h3 {
   }
 
   .hero-dossier,
+  .projects-hero,
+  .detail-hero,
   .hero-main,
+  .projects-hero-main,
+  .detail-main,
   .rail-card,
   .dossier-panel,
+  .archive-entry,
+  .case-panel,
   .project-card,
   .projects-header,
   .project-detail,
