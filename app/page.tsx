@@ -12,6 +12,9 @@ export default function Home() {
           <p className="eyebrow">Base inicial del portafolio</p>
           <h1>{profile.headline}</h1>
           <p className="lead">{profile.summary}</p>
+          <p className="detail-copy">
+            {profile.name} - {profile.role} - {profile.location}
+          </p>
           <div className="actions">
             <Link className="button button-primary" href="/projects">
               Ver proyectos
@@ -37,6 +40,14 @@ export default function Home() {
           <p className="eyebrow">Sobre mi</p>
           <h2>{profile.name}</h2>
           <p>{profile.bio}</p>
+          <div className="actions">
+            <a className="button button-secondary" href={profile.contact.github} target="_blank" rel="noreferrer">
+              GitHub
+            </a>
+            <a className="button button-secondary" href={profile.contact.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
+          </div>
         </article>
 
         <article className="card">

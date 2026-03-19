@@ -1,24 +1,24 @@
 export const projects = [
   {
-    slug: "portafolio-personal",
-    title: "Portafolio personal",
-    year: "2026",
-    status: "en planeacion",
+    slug: "aplicacion-movil-ecommerce",
+    title: "Aplicacion movil de e-commerce",
+    year: "2024",
+    status: "completado",
     summary:
-      "Sitio personal para presentar perfil, habilidades y proyectos en una base lista para SEO y crecimiento de contenido.",
+      "Aplicacion movil completa con autenticacion, catalogo de productos, carrito y creacion de ordenes.",
     description:
-      "Este proyecto sirve como base para construir una presencia profesional propia con Next.js, rutas escalables y contenido mantenible.",
-    stack: ["Next.js", "App Router", "TypeScript"],
+      "Desarrolle la estructura de navegacion con React Navigation, integre un backend en Strapi mediante APIs REST y construi componentes modulares para productos, carrito y flujo de compra con validacion y manejo de errores.",
+    stack: ["React Native", "Expo", "Strapi", "SQLite"],
   },
   {
-    slug: "sistema-de-casos",
-    title: "Sistema de casos de estudio",
-    year: "2026",
-    status: "futuro",
+    slug: "blogdecafe",
+    title: "BlogDeCafe",
+    year: "2023",
+    status: "completado",
     summary:
-      "Extension del portafolio para documentar decisiones, retos y resultados de proyectos reales con mas profundidad.",
+      "Sitio web responsivo tipo blog enfocado en rendimiento, accesibilidad y SEO semantico.",
     description:
-      "Esta expansion convertira el portafolio en una plataforma de contenido tecnico, con detalle por proyecto y mejor narrativa profesional.",
-    stack: ["MDX", "Metadata", "Contenido estructurado"],
+      "Construí layouts con Flexbox y CSS Grid bajo un enfoque mobile-first, implemente lazy loading, HTML semantico y metadatos para mejorar tiempos de carga y visibilidad en buscadores.",
+    stack: ["HTML5", "CSS3", "SEO", "Responsive Design"],
   },
 ] as const;
