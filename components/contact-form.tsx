@@ -2,83 +2,36 @@
 
 import { useMemo, useState } from "react";
 
-type ContactFormProps = {
-  email: string;
-};
-
-export function ContactForm({ email }: ContactFormProps) {
+export function ContactForm({ email }: { email: string }) {
   const [name, setName] = useState("");
   const [senderEmail, setSenderEmail] = useState("");
   const [message, setMessage] = useState("");
 
   const mailtoHref = useMemo(() => {
-    const subject = name
-      ? `Contacto desde portafolio - ${name}`
-      : "Contacto desde portafolio";
-
-    const body = [
-      name ? `Nombre: ${name}` : "",
-      senderEmail ? `Email: ${senderEmail}` : "",
-      "",
-      message,
-    ]
-      .filter(Boolean)
-      .join("\n");
-
+    const subject = name ? `Oportunidad de colaboración - ${name}` : "Contacto desde portafolio";
+    const body = [name ? `Nombre: ${name}` : "", senderEmail ? `Email: ${senderEmail}` : "", "", message].filter(Boolean).join("\n");
     return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }, [email, message, name, senderEmail]);
 
   return (
-    <form
-      className="contact-form"
-      onSubmit={(event) => {
-        event.preventDefault();
-        window.location.href = mailtoHref;
-      }}
-    >
+    <form className="contact-form" onSubmit={(event) => { event.preventDefault(); window.location.href = mailtoHref; }}>
       <div className="field-grid">
         <label className="contact-field">
           <span>Nombre</span>
-          <input
-            name="name"
-            type="text"
-            placeholder="Tu nombre"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
+          <input name="name" type="text" placeholder="Tu nombre" value={name} onChange={(e) => setName(e.target.value)} />
         </label>
-
         <label className="contact-field">
           <span>Email</span>
-          <input
-            name="email"
-            type="email"
-            placeholder="tu@email.com"
-            value={senderEmail}
-            onChange={(event) => setSenderEmail(event.target.value)}
-          />
+          <input name="email" type="email" placeholder="tu@email.com" value={senderEmail} onChange={(e) => setSenderEmail(e.target.value)} />
         </label>
       </div>
-
-      <label className="contact-field contact-field-full">
+      <label className="contact-field">
         <span>Mensaje</span>
-        <textarea
-          name="message"
-          placeholder="Cuéntame brevemente sobre la vacante, proyecto o colaboración."
-          value={message}
-          onChange={(event) => setMessage(event.target.value)}
-          rows={5}
-        />
+        <textarea name="message" placeholder="¿Cómo puedo ayudarte?" value={message} onChange={(e) => setMessage(e.target.value)} rows={5} />
       </label>
-
-      <div className="contact-form-actions">
-        <button className="button button-primary" type="submit">
-          Abrir correo preparado
-        </button>
-        <p className="form-note">
-          El formulario abre tu cliente de correo con el mensaje ya armado.
-        </p>
-      </div>
+      <button className="btn btn-primary" style={{ width: '100%' }} type="submit">
+        Preparar correo electrónico ✨
+      </button>
     </form>
   );
 }

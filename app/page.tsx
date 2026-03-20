@@ -4,177 +4,96 @@ import { profile } from "@/content/profile";
 import { projects } from "@/content/projects";
 
 const featuredProjects = projects.slice(0, 2);
-const profileFacts = [profile.role, profile.location, "Disponible para crecer en equipos de producto"];
 
 export default function Home() {
   return (
-    <main className="shell home-shell">
-      <header className="masthead">
-        <div>
-          <p className="eyebrow">Expediente profesional</p>
-          <strong className="masthead-mark">VEOC / Portfolio</strong>
+    <main className="shell" style={{ paddingTop: '2rem' }}>
+      
+      <section className="hero">
+        <span className="pill" style={{ marginBottom: '1rem' }}>✨ {profile.role}</span>
+        <h1>Creando <span className="text-gradient">experiencias</span> digitales extraordinarias</h1>
+        <p>{profile.summary}</p>
+        <div className="flex-gap" style={{ justifyContent: 'center', marginTop: '2rem' }}>
+          <Link href="/projects" className="btn btn-primary">
+            Explorar Proyectos
+          </Link>
+          <a href={`mailto:${profile.contact.email}`} className="btn btn-secondary">
+            Contactar
+          </a>
         </div>
-        <nav className="top-nav" aria-label="Secciones principales">
-          <a href="#perfil">Perfil</a>
-          <a href="#stack">Stack</a>
-          <a href="#proyectos">Proyectos</a>
-        </nav>
-      </header>
-
-      <section className="hero-dossier card">
-        <article className="hero-main">
-          <div className="hero-intro">
-            <p className="eyebrow">Desarrollador full stack junior</p>
-            <h1>{profile.headline}</h1>
-            <p className="lead">{profile.summary}</p>
-          </div>
-
-          <ul className="fact-strip" aria-label="Datos principales">
-            {profileFacts.map((fact) => (
-              <li key={fact}>{fact}</li>
-            ))}
-          </ul>
-
-          <div className="actions">
-            <Link className="button button-primary" href="/projects">
-              Explorar proyectos
-            </Link>
-            <a className="button button-secondary" href={`mailto:${profile.contact.email}`}>
-              Escribir correo
-            </a>
-          </div>
-        </article>
-
-        <aside className="hero-rail">
-          <div className="rail-card stamp-card">
-            <span className="panel-label">Estado</span>
-            <strong>Abierto a oportunidades</strong>
-            <p>Perfil orientado a producto, integracion de APIs y construccion frontend mantenible.</p>
-          </div>
-
-          <div className="rail-card identity-card">
-            <span className="panel-label">Ficha</span>
-            <h2>{profile.name}</h2>
-            <dl className="identity-list">
-              <div>
-                <dt>Email</dt>
-                <dd>{profile.contact.email}</dd>
-              </div>
-              <div>
-                <dt>Telefono</dt>
-                <dd>{profile.contact.phone}</dd>
-              </div>
-              <div>
-                <dt>Base</dt>
-                <dd>{profile.location}</dd>
-              </div>
-            </dl>
-          </div>
-        </aside>
       </section>
 
-      <section className="inspection-grid">
-        <article className="card dossier-panel" id="perfil">
-          <p className="eyebrow">Sobre mi</p>
-          <div className="panel-head">
-            <h2>Perfil</h2>
-            <span className="status-pill">Revision actual</span>
-          </div>
-          <p className="panel-copy">{profile.bio}</p>
-          <div className="link-row">
-            <a className="button button-secondary" href={profile.contact.github} target="_blank" rel="noreferrer">
+      <section id="perfil" className="grid-2">
+        <div className="glass-panel">
+          <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Sobre mí</h2>
+          <p style={{ color: 'var(--text-secondary)' }}>
+            {profile.bio}
+          </p>
+          <div className="flex-gap" style={{ marginTop: '2rem' }}>
+            <a href={profile.contact.github} target="_blank" rel="noreferrer" className="btn btn-secondary">
               GitHub
             </a>
-            <a className="button button-secondary" href={profile.contact.linkedin} target="_blank" rel="noreferrer">
+            <a href={profile.contact.linkedin} target="_blank" rel="noreferrer" className="btn btn-secondary">
               LinkedIn
             </a>
           </div>
-        </article>
-
-        <article className="card dossier-panel stack-panel" id="stack">
-          <p className="eyebrow">Tecnologias base</p>
-          <div className="panel-head">
-            <h2>Stack</h2>
-            <span className="status-pill muted-pill">En uso</span>
-          </div>
-          <ul className="tag-list stack-tags">
-            {profile.skills.map((skill) => (
-              <li key={skill}>{skill}</li>
-            ))}
-          </ul>
-          <p className="panel-note">
-            JavaScript, TypeScript, frontend moderno y bases solidas para integracion de APIs y desarrollo movil.
-          </p>
-        </article>
-      </section>
-
-      <section className="project-section" id="proyectos">
-        <div className="section-heading project-heading">
-          <div>
-            <p className="eyebrow">Casos destacados</p>
-            <h2>Dos piezas que muestran integracion, estructura y criterio tecnico.</h2>
-          </div>
-          <p className="section-note">
-            Cada proyecto se presenta como una ficha de trabajo: contexto, stack y un resumen tecnico de la solucion.
-          </p>
         </div>
 
-        <div className="project-grid">
+        <div id="stack" className="glass-panel">
+          <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Core Stack</h2>
+          <div className="flex-gap">
+            {profile.skills.map((skill) => (
+              <span key={skill} className="pill">{skill}</span>
+            ))}
+          </div>
+          <p style={{ color: 'var(--text-secondary)', marginTop: '2rem' }}>
+            Dominio de herramientas modernas para construir interfaces fluidas y servidores robustos con escalabilidad asegurada.
+          </p>
+        </div>
+      </section>
+
+      <section id="proyectos">
+        <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
+          <h2 style={{ fontSize: '3rem' }}>Casos <span className="text-gradient">Destacados</span></h2>
+          <p style={{ color: 'var(--text-secondary)' }}>Selección de trabajos recientes.</p>
+        </div>
+        
+        <div className="grid-2">
           {featuredProjects.map((project) => (
-            <article className="card project-card" key={project.slug}>
-              <div className="project-topline">
+            <Link href={`/projects/${project.slug}`} key={project.slug} style={{ textDecoration: 'none' }}>
+              <div className="glass-panel project-card">
                 <div className="project-meta">
                   <span>{project.year}</span>
-                  <span>{project.status}</span>
+                  <span style={{ color: 'var(--accent-1)' }}>{project.status.toUpperCase()}</span>
                 </div>
-                <span className="project-code">EXP-{project.year.slice(-2)}</span>
+                <h3 className="project-title">{project.title}</h3>
+                <p className="project-description">{project.summary}</p>
+                <div className="flex-gap">
+                  {project.stack.slice(0, 3).map((item) => (
+                    <span key={item} className="pill">{item}</span>
+                  ))}
+                  {project.stack.length > 3 && <span className="pill">+{project.stack.length - 3}</span>}
+                </div>
               </div>
-              <h3>{project.title}</h3>
-              <p className="project-summary">{project.summary}</p>
-              <p className="project-description">{project.description}</p>
-              <ul className="tag-list compact">
-                {project.stack.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <Link className="inline-link" href={`/projects/${project.slug}`}>
-                Ver detalle
-              </Link>
-            </article>
+            </Link>
           ))}
+        </div>
+        
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3rem' }}>
+          <Link href="/projects" className="btn btn-secondary">Ver todo el archivo →</Link>
         </div>
       </section>
 
-      <section className="contact-banner card">
-        <div className="contact-column">
-          <div className="contact-copy">
-            <p className="eyebrow">Siguiente paso</p>
-            <h2>Si buscas a alguien que construya interfaces utiles y bien pensadas, conversemos.</h2>
-            <p className="panel-copy">
-              Puedes escribirme directo o dejar un mensaje corto para abrir el correo con contexto listo.
-            </p>
-          </div>
-
-          <div className="contact-direct rail-card">
-            <span className="panel-label">Contacto directo</span>
-            <strong>{profile.contact.email}</strong>
-            <p>{profile.contact.phone}</p>
-            <div className="contact-actions">
-              <a className="button button-primary" href={`mailto:${profile.contact.email}`}>
-                Contactar por correo
-              </a>
-              <a className="button button-secondary" href={profile.contact.linkedin} target="_blank" rel="noreferrer">
-                Ver LinkedIn
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="contact-form-shell rail-card">
-          <span className="panel-label">Formulario corto</span>
+      <section className="glass-panel" style={{ textAlign: 'center', margin: '4rem 0' }}>
+        <h2 style={{ fontSize: '3rem', marginBottom: '1rem' }}>¿Interesado en <span className="text-gradient">colaborar</span>?</h2>
+        <p style={{ color: 'var(--text-secondary)', marginBottom: '3rem', maxWidth: '600px', margin: '0 auto 3rem' }}>
+          Si buscas a alguien que convierta necesidades reales en productos claros y bien pensados, hablemos.
+        </p>
+        <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'left' }}>
           <ContactForm email={profile.contact.email} />
         </div>
       </section>
+
     </main>
   );
 }

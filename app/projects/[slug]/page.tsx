@@ -12,141 +12,88 @@ export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: ProjectPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
-
-  if (!project) {
-    return {
-      title: "Proyecto no encontrado",
-    };
-  }
-
-  return {
-    title: project.title,
-    description: project.summary,
-  };
+  if (!project) return { title: "404" };
+  return { title: project.title, description: project.summary };
 }
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
-  if (!project) {
-    notFound();
-  }
+  if (!project) notFound();
 
   return (
-    <main className="projects-shell dossier-shell">
-      <header className="projects-masthead">
-        <div>
-          <p className="eyebrow">Ficha de proyecto</p>
-          <strong className="masthead-mark">EXP-{project.year.slice(-2)} / Detail</strong>
+    <main className="shell" style={{ paddingTop: '2rem' }}>
+      <Link href="/projects" className="btn btn-secondary" style={{ width: 'fit-content', marginBottom: '2rem' }}>
+        ← Volver
+      </Link>
+
+      <div className="glass-panel" style={{ padding: '4rem', textAlign: 'center', marginBottom: '2rem' }}>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginBottom: '2rem', flexWrap: 'wrap' }}>
+          <span className="pill">{project.year}</span>
+          <span className="pill" style={{ color: 'var(--accent-1)' }}>{project.status.toUpperCase()}</span>
+          <span className="pill">{project.role}</span>
         </div>
-        <Link className="back-link compact-back" href="/projects">
-          Volver al archivo
-        </Link>
-      </header>
+        <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '1.5rem' }}>{project.title}</h1>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '1.25rem', maxWidth: '800px', margin: '0 auto' }}>
+          {project.summary}
+        </p>
+      </div>
 
-      <section className="detail-hero card">
-        <article className="detail-main">
-          <div className="detail-meta">
-            <span>{project.year}</span>
-            <span>{project.status}</span>
-            <span>{project.role}</span>
-            <span>{project.stack.length} tecnologias</span>
-          </div>
-          <h1>{project.title}</h1>
-          <p className="detail-copy">{project.summary}</p>
-          <ul className="tag-list">
-            {project.stack.map((item) => (
-              <li key={item}>{item}</li>
+      <div className="grid-2" style={{ marginBottom: '2rem' }}>
+        <div className="glass-panel">
+          <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>El <span className="text-gradient">Desafío</span></h2>
+          <ul style={{ color: 'var(--text-secondary)', listStylePosition: 'inside', display: 'grid', gap: '1rem' }}>
+            {project.challenges.map((challenge, i) => (
+              <li key={i}>{challenge}</li>
             ))}
           </ul>
-        </article>
+        </div>
 
-        <aside className="detail-side rail-card">
-          <span className="panel-label">Lectura rapida</span>
-          <strong>Implementacion documentada</strong>
-          <p>Este caso resume el problema abordado, la estructura tecnica aplicada y la base dejada para crecer.</p>
-        </aside>
-      </section>
-
-      <section className="detail-layout">
-        <article className="project-detail card case-panel">
-          <p className="eyebrow">Resumen tecnico</p>
-          <h2>Decision y ejecucion</h2>
-          <p className="detail-copy">{project.description}</p>
-        </article>
-
-        <aside className="card case-panel case-sidebar">
-          <p className="eyebrow">Registro de ficha</p>
-          <dl className="identity-list detail-list">
-            <div>
-              <dt>Codigo</dt>
-              <dd>EXP-{project.year.slice(-2)}</dd>
-            </div>
-            <div>
-              <dt>Estado</dt>
-              <dd>{project.status}</dd>
-            </div>
-            <div>
-              <dt>Enfoque</dt>
-              <dd>{project.stack[0]}</dd>
-            </div>
-            <div>
-              <dt>Rol</dt>
-              <dd>{project.role}</dd>
-            </div>
-          </dl>
-        </aside>
-      </section>
-
-      <section className="detail-layout detail-layout-bottom">
-        <article className="card case-panel">
-          <p className="eyebrow">Retos principales</p>
-          <h2>Problemas abordados</h2>
-          <ul className="case-list">
-            {project.challenges.map((challenge) => (
-              <li key={challenge}>{challenge}</li>
+        <div className="glass-panel">
+          <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Los <span className="text-gradient">Resultados</span></h2>
+          <ul style={{ color: 'var(--text-secondary)', listStylePosition: 'inside', display: 'grid', gap: '1rem' }}>
+            {project.achievements.map((achievement, i) => (
+              <li key={i}>{achievement}</li>
             ))}
           </ul>
-        </article>
+        </div>
+      </div>
 
-        <article className="card case-panel">
-          <p className="eyebrow">Logros</p>
-          <h2>Resultados del trabajo</h2>
-          <ul className="case-list">
-            {project.achievements.map((achievement) => (
-              <li key={achievement}>{achievement}</li>
-            ))}
-          </ul>
-        </article>
-      </section>
+      <div className="glass-panel">
+        <h2 style={{ fontSize: '2rem', marginBottom: '1.5rem' }}>Implementación</h2>
+        <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', marginBottom: '2rem' }}>
+          {project.description}
+        </p>
+        
+        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Tech Stack</h3>
+        <div className="flex-gap" style={{ marginBottom: '3rem' }}>
+          {project.stack.map((item) => (
+            <span key={item} className="pill">{item}</span>
+          ))}
+        </div>
 
-      <section className="card case-panel resource-panel">
-        <p className="eyebrow">Enlaces del proyecto</p>
-        <h2>Repositorio y demo</h2>
-        <div className="resource-actions">
+        <div className="flex-gap" style={{ borderTop: '1px solid var(--glass-border)', paddingTop: '2rem' }}>
           {project.repositoryUrl ? (
-            <a className="button button-secondary" href={project.repositoryUrl} target="_blank" rel="noreferrer">
-              Ver repositorio
+            <a className="btn btn-secondary" href={project.repositoryUrl} target="_blank" rel="noreferrer">
+              Código Fuente
             </a>
           ) : (
-            <span className="resource-note">Repositorio pendiente por agregar</span>
+             <span className="pill">Código confidencial interno</span>
           )}
 
           {project.demoUrl ? (
-            <a className="button button-primary" href={project.demoUrl} target="_blank" rel="noreferrer">
-              Ver demo
+            <a className="btn btn-primary" href={project.demoUrl} target="_blank" rel="noreferrer">
+              Visitar Aplicación
             </a>
           ) : (
-            <span className="resource-note">Demo pendiente por agregar</span>
+            <span className="pill" style={{ color: 'var(--accent-3)' }}>Demo en desarrollo</span>
           )}
         </div>
-      </section>
+      </div>
     </main>
   );
 }
